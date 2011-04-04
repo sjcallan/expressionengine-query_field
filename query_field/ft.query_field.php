@@ -38,7 +38,7 @@ class Query_field_ft extends EE_Fieldtype {
 		$options = Array();
 		$options[""] = "- Select One -";
 		
-		$query = $this->db->query($query_sql);
+		$query = $this->EE->db->query($query_sql);
 		
 		if($query->num_rows() > 0)
 		{
@@ -121,6 +121,46 @@ class Query_field_ft extends EE_Fieldtype {
 		$query_label		= isset($data['query_label']) ? $data['query_label'] : $this->settings['query_label'];
 		$query_form_type	= isset($data['query_form_type']) ? $data['query_form_type'] : $this->settings['query_form_type'];
 			
+		/* Id */
+			$id_field_data = array(
+              'name'        => 'query_id',
+              'id'          => 'query_id',
+              'value'       => $query_id,
+              'size'        => '200'
+            );
+			
+			$this->EE->table->add_row(
+				lang('Value Field','query_id'),
+				form_input('query_id',$id_field_data,$query_id)
+			);
+		
+		/* Label */
+			$label_field_data = array(
+              'name'        => 'query_label',
+              'id'          => 'query_label',
+              'value'       => $query_label,
+              'size'        => '200'
+            );
+			
+			$this->EE->table->add_row(
+				lang('Visible Text Field','query_label'),
+				form_input('query_label',$label_field_data,$query_label)
+			);
+		
+		/* SQL */
+			$sql_field_data = array(
+              'name'        => 'query_form_type',
+              'id'          => 'query_form_type',
+              'value'       => $query_sql,
+              'rows'        => '8',
+              'cols'		=> '40'
+            );
+			
+			$this->EE->table->add_row(
+				lang('SQL Query','query_sql'),
+				form_textarea('query_sql',$sql_field_data,$query_sql)
+			);	
+			
 		/* Form type */
 			
 			$form_type_options = array(
@@ -130,7 +170,7 @@ class Query_field_ft extends EE_Fieldtype {
 		
 			$this->EE->table->add_row(
 				lang('Form Type','query_form_type'),
-				form_dropdown('query_form_type',$form_type_options,$digital_asset_formtype)
+				form_dropdown('query_form_type',$form_type_options,$query_form_type)
 			);
 		
 	}
