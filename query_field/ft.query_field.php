@@ -116,6 +116,7 @@ class Query_field_ft extends EE_Fieldtype {
 	 */
 	function display_settings($data)
 	{
+	
 		$query_sql			= isset($data['query_sql']) ? $data['query_sql'] : $this->settings['query_sql'];
 		$query_id			= isset($data['query_id']) ? $data['query_id'] : $this->settings['query_id'];
 		$query_label		= isset($data['query_label']) ? $data['query_label'] : $this->settings['query_label'];
@@ -131,7 +132,7 @@ class Query_field_ft extends EE_Fieldtype {
 			
 			$this->EE->table->add_row(
 				lang('Value Field','query_id'),
-				form_input('query_id',$id_field_data,$query_id)
+				form_input($id_field_data)
 			);
 		
 		/* Label */
@@ -144,13 +145,13 @@ class Query_field_ft extends EE_Fieldtype {
 			
 			$this->EE->table->add_row(
 				lang('Visible Text Field','query_label'),
-				form_input('query_label',$label_field_data,$query_label)
+				form_input($label_field_data)
 			);
 		
 		/* SQL */
 			$sql_field_data = array(
-              'name'        => 'query_form_type',
-              'id'          => 'query_form_type',
+              'name'        => 'query_sql',
+              'id'          => 'query_sql',
               'value'       => $query_sql,
               'rows'        => '8',
               'cols'		=> '40'
@@ -158,7 +159,7 @@ class Query_field_ft extends EE_Fieldtype {
 			
 			$this->EE->table->add_row(
 				lang('SQL Query','query_sql'),
-				form_textarea('query_sql',$sql_field_data,$query_sql)
+				form_textarea($sql_field_data)
 			);	
 			
 		/* Form type */
