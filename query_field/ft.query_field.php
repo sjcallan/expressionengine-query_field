@@ -11,7 +11,7 @@ class Query_field_ft extends EE_Fieldtype {
 	
 	function __construct()
 	{
-		parent::EE_Fieldtype();
+		parent::__construct();
 		$this->EE->load->helper("custom_field_helper");
 		$this->EE =& get_instance();
 	}
