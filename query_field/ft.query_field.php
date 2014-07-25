@@ -11,7 +11,7 @@ class Query_field_ft extends EE_Fieldtype {
 	
 	function __construct()
 	{
-		parent::EE_Fieldtype();
+		if (version_compare(APP_VER, '2.1.4', '>')) { parent::__construct(); } else { parent::EE_Fieldtype(); }
 		$this->EE->load->helper("custom_field_helper");
 		$this->EE =& get_instance();
 	}
